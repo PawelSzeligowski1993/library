@@ -1,10 +1,10 @@
 package pl.sda.library.model;
 
-public class BookBuilder {
+public abstract class BookBuilder<BookClass extends Book> {
 
-    private String authorFirstName;
-    private String authorLastName;
-    private String tiltle;
+    protected String authorFirstName;
+    protected String authorLastName;
+    protected String tiltle;
 
     public BookBuilder authorFirstName (String authorFirstName){
         this.authorFirstName = authorFirstName;
@@ -22,15 +22,20 @@ public class BookBuilder {
         return this;
     }
 
-    public Book build(){
-        Book book = new Book();
-        Author author =  new Author();
-        author.setFirstName(authorFirstName);
-        author.setLastName(authorLastName);
-        book.setAuthor(author);
-        book.setTitle(tiltle);
-        return book;
-    }
+    public abstract BookBuilder getBookBuilderClass();
+
+
+    public abstract BookClass build();
+
+//    public Book build(){
+//        Book book = new Book();
+//        Author author =  new Author();
+//        author.setFirstName(authorFirstName);
+//        author.setLastName(authorLastName);
+//        book.setAuthor(author);
+//        book.setTitle(tiltle);
+//        return book;
+//    }
 
 
 }

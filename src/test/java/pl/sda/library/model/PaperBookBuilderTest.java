@@ -1,33 +1,32 @@
 package pl.sda.library.model;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+public class PaperBookBuilderTest {
 
-// final zabrania nadpisywac
-
-public final class BookBuilderTest {
-
-    @Test
-    public void shouldBuildBookWhenDetailsAreDefined(){
+    @Test public void shouldBuildPaperBookWhenPaperBookDetailsAreDefined() {
         // given
-        String authorFirstName = "Jan";
+        String authorFirstName = "Henryk";
         String authorLastName = "Sienkiewicz";
-        String title = "w pustyni i w puszczy";
+        String title = "W pustyni i w puszczy";
+        Cover cover = Cover.SOFT;
         // when
-        Book book = new BookBuilder().authorFirstName(authorFirstName)
-                .authorLastName(authorLastName)
-                .title(title)
+        PaperBook book = new PaperBookBuilder()//
+                .authorFirstName(authorFirstName)//
+                .authorLastName(authorLastName)//
+                .title(title)//
+                .cover(cover)//
                 .build();
-
-        //then
+        // then
         assertNotNull(book);
         assertNotNull(book.getAuthor());
         assertEquals(authorFirstName, book.getAuthor().getFirstName());
         assertEquals(authorLastName, book.getAuthor().getLastName());
         assertEquals(title, book.getTitle());
+        assertEquals(cover, book.getCover());
     }
+
 }
