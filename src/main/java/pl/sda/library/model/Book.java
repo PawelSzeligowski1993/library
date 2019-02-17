@@ -2,9 +2,9 @@ package pl.sda.library.model;
 
 import java.util.Objects;
 
-public class Book {
-    Author author;
-    String title;
+public abstract class Book {
+    protected Author author;
+    protected String title;
 
     Book(){
 
