@@ -1,6 +1,7 @@
 <project
         xmlns="jar://C:/Program Files/JetBrains/IntelliJ IDEA Community Edition 2018.3.3/plugins/maven/lib/maven.jar!/schemas/maven-4.0.0.xsd">
 
+    <modelVersion>4.0.0</modelVersion>
     <groupId>pl.sda</groupId>
     <artifactId>library</artifactId>
     <version>1.0.0</version>
@@ -22,6 +23,12 @@
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.12</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-all</artifactId>
+        <version>1.10.19</version>
         <scope>test</scope>
     </dependency>
 </dependencies>

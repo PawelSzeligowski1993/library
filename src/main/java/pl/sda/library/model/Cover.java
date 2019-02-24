@@ -1,10 +1,33 @@
 package pl.sda.library.model;
 
+
+
 public enum Cover {
-    SOFT("Miekka"),HARD("Twarda");
+
+
+
+    SOFT("miękka"), HARD("twarda");
+
+
+
     private String name;
 
-    Cover (String name) {this.name = name;}
 
-    public String getName(){return name;}
+
+    Cover(String name) {
+
+        this.name = name;
+
+    }
+
+
+
+    public String getName() {
+
+        return name;
+
+    }
+
+
+
 }

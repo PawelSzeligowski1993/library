@@ -6,33 +6,33 @@ import java.util.Objects;
 
 
 
-public class AudioBook extends Book implements DigitalMedium {
+public class Movie extends Medium implements DigitalMedium {
 
 
 
-    AudioBook() {
-
-    }
-
-
-
-    private Format format;
+    private Creator director;
 
     private int duration;
 
 
 
-    public Format getFormat() {
-
-        return format;
+    Movie() {
 
     }
 
 
 
-    public void setFormat(Format format) {
+    public Creator getDirector() {
 
-        this.format = format;
+        return director;
+
+    }
+
+
+
+    public void setDirector(Creator director) {
+
+        this.director = director;
 
     }
 
@@ -74,9 +74,9 @@ public class AudioBook extends Book implements DigitalMedium {
 
         }
 
-        AudioBook audioBook = (AudioBook) o;
+        Movie movie = (Movie) o;
 
-        return duration == audioBook.duration && format == audioBook.format;
+        return duration == movie.duration && Objects.equals(director, movie.director);
 
     }
 
@@ -84,7 +84,7 @@ public class AudioBook extends Book implements DigitalMedium {
 
     @Override public int hashCode() {
 
-        return Objects.hash(super.hashCode(), format, duration);
+        return Objects.hash(super.hashCode(), director, duration);
 
     }
 
@@ -92,7 +92,7 @@ public class AudioBook extends Book implements DigitalMedium {
 
     @Override public String toString() {
 
-        return "AudioBook{" + "format=" + format + ", duration=" + duration + ", author=" + author + ", title='" + title + '\'' + '}';
+        return "Movie{" + "director=" + director + ", duration=" + duration + ", title='" + title + '\'' + '}';
 
     }
 
