@@ -1,149 +1,235 @@
 package pl.sda.library;
 
-import pl.sda.library.model.*;
-import pl.sda.library.command.*;
+import pl.sda.library.command.Command;
+
+import pl.sda.library.command.CreateMultimediaCommand;
+
+import pl.sda.library.command.DisplayMultimediaCommand;
+
+import pl.sda.library.command.FilterByTypeCommand;
+
+import pl.sda.library.model.AudioBookBuilder;
+
+import pl.sda.library.model.Cover;
+
+import pl.sda.library.model.Format;
+
+import pl.sda.library.model.Library;
+
+import pl.sda.library.model.MagazineBuilder;
+
+import pl.sda.library.model.Medium;
+
+import pl.sda.library.model.MovieBuilder;
+
+import pl.sda.library.model.PaperBookBuilder;
+
+
 
 import java.util.HashMap;
+
 import java.util.Map;
+
 import java.util.Optional;
+
 import java.util.Scanner;
 
+
+
 public class Main {
+
+
+
     public static void main(String[] args) {
 
-        System.out.println("Program działa");
-
-//        Library<Book> library = new Library<>();
         Library<Medium> library = new Library<>();
-        Scanner scanner = new Scanner(System.in);
-//        Library<PaperBook> library1 = new Library<>();
-//        Library<AudioBook> library2= new Library<>();
-        createLibrary(library);
 
-        Map<String, Command> commands =new HashMap<>();
-        commands.put("exit", ()-> System.exit(0));// zamykanie programu po przez wpisanie komendy 0
+        Scanner scanner = new Scanner(System.in);
+
+        Map<String, Command> commands = new HashMap<>();
+
+        commands.put("exit", () -> System.exit(0));
+
         commands.put("display", new DisplayMultimediaCommand(library, System.out));
 
-        //TODO
-        while (true){
-            System.out.println("Podaj komendę");
+        commands.put("filter", new FilterByTypeCommand(library, System.out));
+
+        commands.put("create", new CreateMultimediaCommand(library, System.out));
+
+        while (true) {
+
+            System.out.println("Podaj komendę:");
+
             String commandName = scanner.nextLine();
+
             Command command = commands.get(commandName);
+
             Optional.ofNullable(command).ifPresent(Command::execute);
+
         }
-
-        // komenda wyswietlenia wszystkiego
-
-
-//        }
 
     }
 
-    private static void createLibrary(Library<Medium> library) {
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("Carol")//
-                .authorLastName("Lewis")//
-                .title("Lew, czarownica i stara szafa")//
-                .cover(Cover.HARD)
-                .build());
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("Lewis")//
-                .authorLastName("Carol")//
-                .title("Alicja w Krainie Czarów")//
-                .build());
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("Xueqin")//
-                .authorLastName("Cao")//
-                .title("Sen czerwonego pawilonu")//
-                .build());
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("Agatha")//
-                .authorLastName("Christie")//
-                .title("I nie było już nikogo")//
-                .build());
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("John")//
-                .authorLastName("Tolkien")//
-                .title("Hobbit, czyli tam i z powrotem")//
-                .build());
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("Joanne")//
-                .authorLastName("Rowling")//
-                .title("Harry Potter i kamień filozoficzny")//
-                .build());
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("Antoine")//
-                .authorLastName("de Saint-Exupéry")//
-                .title("Mały Książę")//
-                .build());
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("John")//
-                .authorLastName("Tolkien")//
-                .title("Władca Pierścieni")//
-                .build());
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("Charles")//
-                .authorLastName("Dickens")//
-                .title("Opowieść o dwóch miastach")//
-                .build());
-        library.addMedium(new PaperBookBuilder()//
-                .authorFirstName("Miguel")//
-                .authorLastName("de Cervantes")//
-                .title("Don Kichot")//
-                .build());
-        // ----------- Audio Book
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("Carol")//
-                .authorLastName("Lewis")//
-                .title("Lew, czarownica i stara szafa")//
-                .build());
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("Lewis")//
-                .authorLastName("Carol")//
-                .title("Alicja w Krainie Czarów")//
-                .build());
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("Xueqin")//
-                .authorLastName("Cao")//
-                .title("Sen czerwonego pawilonu")//
-                .build());
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("Agatha")//
-                .authorLastName("Christie")//
-                .title("I nie było już nikogo")//
-                .build());
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("John")//
-                .authorLastName("Tolkien")//
-                .title("Hobbit, czyli tam i z powrotem")//
-                .build());
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("Joanne")//
-                .authorLastName("Rowling")//
-                .title("Harry Potter i kamień filozoficzny")//
-                .build());
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("Antoine")//
-                .authorLastName("de Saint-Exupéry")//
-                .title("Mały Książę")//
-                .build());
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("John")//
-                .authorLastName("Tolkien")//
-                .title("Władca Pierścieni")//
-                .build());
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("Charles")//
-                .authorLastName("Dickens")//
-                .title("Opowieść o dwóch miastach")//
-                .build());
-        library.addMedium(new AudioBookBuilder()//
-                .authorFirstName("Miguel")//
-                .authorLastName("de Cervantes")//
-                .title("Don Kichot")//
-                .build());
-//-------------Czasopisma----------------------------
 
+
+    private static Library<Medium> createLibrary() {
+
+        Library<Medium> library = new Library<>();
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("Carol")//
+
+                .authorLastName("Lewis")//
+
+                .title("Lew, czarownica i stara szafa")//
+
+                .cover(Cover.HARD)//
+
+                .build());
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("Lewis")//
+
+                .authorLastName("Carol")//
+
+                .title("Alicja w Krainie Czarów")//
+
+                .build());
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("Xueqin")//
+
+                .authorLastName("Cao")//
+
+                .title("Sen czerwonego pawilonu")//
+
+                .build());
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("Agatha")//
+
+                .authorLastName("Christie")//
+
+                .title("I nie było już nikogo")//
+
+                .build());
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("John")//
+
+                .authorLastName("Tolkien")//
+
+                .title("Hobbit, czyli tam i z powrotem")//
+
+                .build());
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("Joanne")//
+
+                .authorLastName("Rowling")//
+
+                .title("Harry Potter i kamień filozoficzny")//
+
+                .build());
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("Antoine")//
+
+                .authorLastName("de Saint-Exupéry")//
+
+                .title("Mały Książę")//
+
+                .build());
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("John")//
+
+                .authorLastName("Tolkien")//
+
+                .title("Władca Pierścieni")//
+
+                .build());
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("Charles")//
+
+                .authorLastName("Dickens")//
+
+                .title("Opowieść o dwóch miastach")//
+
+                .build());
+
+        library.addMedium(new PaperBookBuilder()//
+
+                .authorFirstName("Miguel")//
+
+                .authorLastName("de Cervantes")//
+
+                .title("Don Kichot")//
+
+                .build());
+
+        library.addMedium(new AudioBookBuilder()//
+
+                .authorFirstName("Carol")//
+                .authorLastName("Lewis")//
+                .title("Lew, czarownica i stara szafa")//
+                .format(Format.FLAC)//
+                .build());
+        library.addMedium(new AudioBookBuilder()//
+                .authorFirstName("Lewis")//
+                .authorLastName("Carol")//
+                .title("Alicja w Krainie Czarów")//
+                .build());
+        library.addMedium(new AudioBookBuilder()//
+                .authorFirstName("Xueqin")//
+                .authorLastName("Cao")//
+                .title("Sen czerwonego pawilonu")//
+                .build());
+        library.addMedium(new AudioBookBuilder()//
+                .authorFirstName("Agatha")//
+                .authorLastName("Christie")//
+                .title("I nie było już nikogo")//
+                .build());
+        library.addMedium(new AudioBookBuilder()//
+                .authorFirstName("John")//
+                .authorLastName("Tolkien")//
+                .title("Hobbit, czyli tam i z powrotem")//
+                .build());
+        library.addMedium(new AudioBookBuilder()//
+                .authorFirstName("Joanne")//
+                .authorLastName("Rowling")//
+                .title("Harry Potter i kamień filozoficzny")//
+                .build());
+        library.addMedium(new AudioBookBuilder()//
+                .authorFirstName("Antoine")//
+                .authorLastName("de Saint-Exupéry")//
+                .title("Mały Książę")//
+                .build());
+        library.addMedium(new AudioBookBuilder()//
+                .authorFirstName("John")//
+                .authorLastName("Tolkien")//
+                .title("Władca Pierścieni")//
+                .build());
+        library.addMedium(new AudioBookBuilder()//
+                .authorFirstName("Charles")//
+                .authorLastName("Dickens")//
+                .title("Opowieść o dwóch miastach")//
+                .build());
+        library.addMedium(new AudioBookBuilder()//
+                .authorFirstName("Miguel")//
+                .authorLastName("de Cervantes")//
+                .title("Don Kichot")//
+                .build());
         library.addMedium(new MagazineBuilder()//
                 .title("Motor")//
                 .number(15)//
@@ -177,11 +263,6 @@ public class Main {
                 .directorLastName("Nakache")//
                 .duration(110)//
                 .build());
-
-
-        library.getMedia().forEach(System.out::println);//3
-// 2       library.getMedia().forEach(medium -> System.out.println(medium));
-//  1      for(Medium medium: library.getMedia()){
-//            System.out.println(medium);
+        return library;
     }
 }
