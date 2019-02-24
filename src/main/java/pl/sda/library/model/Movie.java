@@ -89,13 +89,13 @@ public class Movie extends Medium implements DigitalMedium {
     }
 
 
-
-    @Override public String toString() {
-
-        return "Movie{" + "director=" + director + ", duration=" + duration + ", title='" + title + '\'' + '}';
-
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "director=" + director +
+                ", duration=" + duration +
+                ", title='" + title + '\'' +
+                ", state=" + state +
+                '}';
     }
-
-
-
 }

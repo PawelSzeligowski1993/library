@@ -1,14 +1,8 @@
 package pl.sda.library.model;
 
-
-
 import java.util.Optional;
 
-
-
 public class PaperBookBuilder {
-
-
 
     private String authorFirstName;
     private String authorLastName;
@@ -16,14 +10,10 @@ public class PaperBookBuilder {
     private Cover cover;
     private int pageCount;
 
-
-
     public PaperBookBuilder authorFirstName(String authorFirstName) {
         this.authorFirstName = authorFirstName;
         return this;
     }
-
-
 
     public PaperBookBuilder authorLastName(String authorLastName) {
         this.authorLastName = authorLastName;
@@ -31,12 +21,10 @@ public class PaperBookBuilder {
     }
 
 
-
     public PaperBookBuilder title(String title) {
         this.title = title;
         return this;
     }
-
 
 
     public PaperBookBuilder cover(Cover cover) {
@@ -62,6 +50,8 @@ public class PaperBookBuilder {
         book.setCover(Optional//
                 .ofNullable(this.cover)//
                 .orElse(Cover.SOFT));
+        book.setPageCount(pageCount);
+        book.setState(new ReturnedState());
         return book;
     }
 

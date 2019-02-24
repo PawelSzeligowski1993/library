@@ -89,13 +89,14 @@ public class AudioBook extends Book implements DigitalMedium {
     }
 
 
-
-    @Override public String toString() {
-
-        return "AudioBook{" + "format=" + format + ", duration=" + duration + ", author=" + author + ", title='" + title + '\'' + '}';
-
+    @Override
+    public String toString() {
+        return "AudioBook{" +
+                "format=" + format +
+                ", duration=" + duration +
+                ", author=" + author +
+                ", title='" + title + '\'' +
+                ", state=" + state +
+                '}';
     }
-
-
-
 }
