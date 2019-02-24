@@ -26,6 +26,7 @@ public class MagazineBuilder {
         magazine.setTitle(title);
         magazine.setNumber(number);
         magazine.setPageCount(pageCount);
+        magazine.setState(new ReturnedState());
         return magazine;
     }
 }
